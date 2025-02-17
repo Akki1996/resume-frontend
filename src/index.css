@@ -15,3 +15,17 @@ span {
 .ant-form-item-explain-error{
   margin-bottom: 10px;
 }
+
+.site-collapse-custom-collapse {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.site-collapse-custom-panel {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.site-collapse-custom-panel:last-child {
+  border-bottom: none;
+}

@@ -4,8 +4,9 @@ import { LogoutOutlined } from '@ant-design/icons';
 import { FaRegCircleUser } from "react-icons/fa6";
 import Sidebar from './Sidebar';
 import Header from './Header';
+import { Outlet } from 'react-router-dom';
 
-const Layout = ({ children }) => {
+const Layout = () => {
  
 
   return (
@@ -14,10 +15,9 @@ const Layout = ({ children }) => {
       
       <div className="flex-1 flex flex-col">
       <Header />
-        
 
-        <div className="flex-1 p-6 overflow-y-auto">
-          {children}
+        <div className="flex-1 p-6 overflow-y-auto ml-16 lg:ml-64">
+        <Outlet />
         </div>
       </div>
     </div>
