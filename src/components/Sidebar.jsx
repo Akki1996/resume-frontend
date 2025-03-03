@@ -20,7 +20,7 @@ const Sidebar = () => {
               }
             >
               <FaHome className="w-5 h-5 lg:mr-3" />
-              <span className="hidden lg:inline">home</span>
+              <span className="hidden lg:inline">Home</span>
             </NavLink>
           </li>
           <li>
