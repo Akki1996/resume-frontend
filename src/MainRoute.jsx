@@ -3,7 +3,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
+import Resume from './pages/Resume';
 import Layout from './components/Layout';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -18,8 +18,8 @@ function MainRoute() {
 
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/resume" element={<Dashboard />} />
+            <Route path="/" element={<Resume />} />
           </Route>
         </Route>
       </Routes>

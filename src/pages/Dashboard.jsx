@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import axiosinstance from "../utils/Axiossetup";
 import TemplateList from "../components/TemplateList";
 import Loader from "../components/Loader";
+import CustomizationPage from "../components/CustomizationPage"; // Import the updated CustomizationPage
 
 const { Step } = Steps;
 
@@ -27,19 +28,21 @@ const Dashboard = () => {
     },
     template_id: "",
   });
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // New state for form submission
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [templateContent, setTemplateContent] = useState(null); // New state for template content
 
   const handleSubmitForm = async () => {
     try {
       setIsLoading(true);
       const response = await axiosinstance.post("/resumeData", formData);
       if (response.data.success === true) {
+        console.log(response?.data?.template?.content, "repooo");
+        setTemplateContent(response?.data?.template?.content); // Set the template content
         message.success("Form submitted successfully");
-        setIsFormSubmitted(true); // Show the customization page
+        setIsFormSubmitted(true);
       }
-    } catch (err) {
-      console.log(err);
-      message.error(err?.response?.data?.message);
+    } catch (error) {
+      message.error(error?.response?.data?.message||error);
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +65,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [current,isFormSubmitted]);
+  }, [current, isFormSubmitted]);
 
   const next = () => setCurrent(current + 1);
   const prev = () => setCurrent(current - 1);
@@ -70,6 +73,8 @@ const Dashboard = () => {
   const handleTemplateSelect = (templateId) => {
     setFormData({ ...formData, template_id: templateId });
   };
+
+  console.log(formData, "detailsss");
 
   const steps = [
     {
@@ -124,26 +129,12 @@ const Dashboard = () => {
     },
   ];
 
-  // Customization Page Component
-  const CustomizationPage = () => (
-    <div className="p-8 bg-white rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold text-center mb-8">
-        Customise Your Template with AI
-      </h1>
-      <div className="space-y-6">
-        <div className="p-6 border border-gray-200 rounded-lg">
-         
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="flex min-h-screen bg-gray-100">
       {isLoading && <Loader />}
       <div className="flex-1 p-8">
         {isFormSubmitted ? (
-          <CustomizationPage />
+          <CustomizationPage templateContent={templateContent} setIsLoading={setIsLoading} />
         ) : (
           <>
             <Steps current={current} className="!mb-8">

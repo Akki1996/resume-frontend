@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaUser } from 'react-icons/fa'; 
+import { FaHome, FaUser,FaRegFileAlt  } from 'react-icons/fa'; 
 import ReactLogo from '../assets/react.svg'; 
 const Sidebar = () => {
   return (
@@ -10,7 +10,7 @@ const Sidebar = () => {
       </div>
 
       <ul className="mt-6">
-          <li>
+      <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -19,23 +19,24 @@ const Sidebar = () => {
                 }`
               }
             >
-              <FaHome className="w-5 h-5 lg:mr-3 !text-[30px]" />
-              <span className="hidden lg:inline">Dashboard</span>
+              <FaHome className="w-5 h-5 lg:mr-3" />
+              <span className="hidden lg:inline">home</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/profile"
+              to="/resume"
               className={({ isActive }) =>
                 `flex items-center px-4 lg:px-6 py-3 text-[16px] font-medium  hover:bg-blue-400 text-white transition duration-200 ${
                   isActive ? 'bg-blue-300 text-white' : ''
                 }`
               }
             >
-              <FaUser className="w-5 h-5 lg:mr-3" />
-              <span className="hidden lg:inline">Profile</span>
+              <FaRegFileAlt className="w-5 h-5 lg:mr-3 !text-[30px]" />
+              <span className="hidden lg:inline">Build Resume</span>
             </NavLink>
           </li>
+          
           </ul>
     </div>
   );
